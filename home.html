@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-Compatible" content="ie-edge">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<iframe src="header.html"></iframe>
+
+<div id="div-alinha">
+    <h3>Lista de Projetos</h3>
+
+    <a id="add-link" href="#">
+        <button type="button" class="btn btn-success">Criar Projetos</button>
+    </a>
+    
+    {% if messages %}
+    <ul class="messages">
+       {% for message in messages %}
+            <li {% if message.tags %}class="alert alert-{{message.tags}}"{% endif %}>{{ message }}</li>
+       {% endfor %}
+    </ul>
+    {% endif %}
+
+    <table class="table-round-corner" cellspacing="0">
+        <tr>
+            <th>Entrar no Projeto</th>
+            <th>Nome do Projetos</th>
+            <th>Editar Projeto</th>
+            <th>Deletar Projeto</th>
+        </tr>
+        {% for item in project_name %}
+            <tr>
+                <td id="td-ajuste"><a href="tasklist/{{item.id}}"><span><i class="fas fa-database fa-2x" aria-hidden="true"></i></span></a></td>
+                <td><div id="passar_mouse">{{item.r_project}}<div id="mostrar">Abrir tabela de Circuitos</div></td>
+                <!-- <td><a href="{% url 'edit-project' item.id %}"><span><i class="fas fa-edit"></i></span></a></td> -->
+                <td id="td-ajuste"><a href="editproject/{{item.id}}"><span><i class="fas fa-edit"></i></span></a></td>
+                <!-- <td id="td-ajuste"><a href="admin/cable/project/{{item.id}}/change/"><span><i class="fas fa-edit"></i></span></a></td>-->
+                <td id="td-ajuste"><a href="deleteproject/{{item.id}}" class="delete-btn"><span><i class="fas fa-trash"></i></span></a></td>
+            </tr>
+        {% endfor %}
+        
+    </table>
+</div>
+
+<br>
+<br>
+
+<iframe src="footer.html"></iframe>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
