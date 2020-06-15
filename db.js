@@ -6,7 +6,7 @@ function createDb(ckt){
     //document.getElementById('btn-salvar').addEventListener('click', salvar);
     
     db.transaction(function(tx) {
-        tx.executeSql("CREATE TABLE IF NOT EXISTS circuit (id INTEGER PRIMARY KEY,PROJETO TEXT, LOCAL TEXT, TIPO TEXT, TENSAO_VA INTEGER, QUANT INTEGER, POTENCIA_VA INTEGER, TOTAL_VA INTEGER, CORRENTE_VA, INTEGER, COMP_CKT INTEGER, SECAO_CONDUTOR INTEGER, QUEDA_TENSAO INTEGER, PERMITIDA INTEGER, N_DE_POLOS INETGER, CORRENTE_NOMINAL INTEGER, DJ_Usual TEXT");
+        tx.executeSql("CREATE TABLE IF NOT EXISTS circuit (id INTEGER PRIMARY KEY,proj TEXT, local TEXT, tipo_ckt TEXT, tens_va INTEGER, qt_ckt INTEGER, power_va INTEGER, carga_total INTEGER, corr_total INTEGER, comp_ckt INTEGER, secao_conduto INTEGER, qd_tens_perm INTEGER, n_polos INTEGER, corr_nom INTEGER, dj TEXT)");
     });
 
 } 
@@ -19,7 +19,7 @@ botaoAdicionar.addEventListener("click", function(event){
     //Ler formulário
     var ckt = obtemCKTFormulario(form);
 
-    addData(ckt)
+    //addData(ckt)
 
     form.reset();
 
@@ -28,32 +28,44 @@ botaoAdicionar.addEventListener("click", function(event){
 function obtemCKTFormulario(form) {
 
     var ckt = {
-        project: form.id_r_project.value, //PROJETO
+        projeto: form.id_r_project.value, //PROJETO
         local: form.id_r_local.value, //LOCAL
-        typeCKT: form.id_r_type_circuit.value, //TIPO
-        tensaoVa: form.id_r_tension.value, //TENSAO_VA
-        numberPoints: form.r_numbers_points.value, //QUANT
-        powerVA: form.id_r_power_va.value, //POTENCIA_VA
-        circuitLength: form.id_r_circuit_length.value, //COMP_CKT
-        voltdropAllow: form.id_r_volt_drop_allow.value, //QUEDA_TENSAO
-        numberPolos: form.id_r_numero_polos.value, //N_DE_POLOS
+        tipoCKT: form.id_r_type_circuit.value, //TIPO
+        tensVa: form.id_r_tension.value, //TENSAO_VA
+        qtCKT: form.r_numbers_points.value, //QUANT
+        powerVA: form.id_r_power_va.value, //POTENCIA_TOTAL
+        compCKT: form.id_r_circuit_length.value, //COMP_CKT
+        qdTensPerm: form.id_r_volt_drop_allow.value, //QUEDA_TENSAO
+        nPolos: form.id_r_numero_polos.value, //N_DE_POLOS
     }
     console.log(ckt)
     return ckt;
 }
 
-function addData(ckt){
+function addData(ckt, calc){
 
-    createDb(ckt)
+    //createDb(ckt)
+
     db.transaction(function(tx) {
-        tx.executeSql('INSERT INTO myTable (PROJETO, LOCAL, TIPO, TENSAO_VA, QUANT, POTENCIA_VA, TOTAL_VA, CORRENTE_VA, COMP_CKT, SECAO_CONDUTOR, QUEDA_TENSAO, PERMITIDA, N_DE_POLOS, CORRENTE_NOMINAL, DJ_Usual) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [ckt.project,ckt.local,ckt.typeCKT,ckt.tensaoVa,ckt.numberPoints,ckt.powerVA,'TVA','CVA',ckt.circuitLength,'SECAO_CONDUTOR', 'QUEDA_TENSAO', 'PERMITIDA',ckt.voltdropAllow,ckt.numberPolos,'CORRENTE_NOMINAL', 'DJ']);
+        tx.executeSql('INSERT INTO myTable (proj, local, tipo_ckt, tens_va, qt_ckt, power_va, carga_total, corr_total, comp_ckt, secao_conduto, qd_tens_perm, n_polos, corr_nom, dj) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [ckt.projeto, ckt.local, ckt.tipo_ckt, ckt.tensVa, ckt.qtCKT, ckt.powerVA, calc.carga_total, calc.corr_total, ckt.compCKT, calc.secao_conduto, ckt.qdTensPerm, ckt.nPolos, calc.corr_nom, calc.dj]);
 
     });
 }
 
-function calculos(){
-    CORRENTE_NOMINAL
+
+
+
+
+function salvar(event){
+    
+    //var id = document.getElementById('field-id').value;
+    var tensaVa = document.getElementById('id_r_tension').value;
+
+    console.log(tension[tensaVa])
+    
 }
+
+
 
 
 /*
@@ -128,15 +140,6 @@ function validaPaciente(paciente) {
 
 
 
-
-function salvar(event){
-    
-    //var id = document.getElementById('field-id').value;
-    var tensaVa = document.getElementById('id_r_tension').value;
-
-    console.log(tension[tensaVa])
-    
-}
 
 
 

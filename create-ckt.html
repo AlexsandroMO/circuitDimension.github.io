@@ -1,7 +1,5 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,8 +81,9 @@
         </label>
         <div class="">
             <select name="r_project" class="select form-control" required id="id_r_project">
-                <option value="" selected>---------</option>
-                <option value="1">Test</option>
+                <option value="0" selected>---------</option>
+                <option value="1">Projeto Casa 01</option>
+                
             </select>
         </div>
     </div>
@@ -94,7 +93,16 @@
             Local da Instalação<span class="asteriskField">*</span>
         </label>
         <div class="">
-            <input type="text" name="r_local" maxlength="50" class="textinput textInput form-control" required id="id_r_local">
+            <select name="r_local" class="select form-control" required id="id_r_local">
+                <option value="0" selected>---------</option>
+                <option value="1">Sala</option>
+                <option value="2">Quarto 01</option>
+                <option value="3">Quarto 02</option>
+                <option value="4">Quarto 03</option>
+                <option value="5">Cozinha</option>
+                <option value="6">Varanda</option>
+                <option value="7">Área Externa</option>
+            </select>
         </div>
     </div>
     <div id="div_id_r_type_circuit" class="form-group">
@@ -102,14 +110,12 @@
             Tipo de Instalação<span class="asteriskField">*</span>
         </label>
         <div class="">
-            <select name="r_type_circuit" class="select form-control" required id="id_r_type_circuit">           <option value="0" selected>Sala</option>
-                <option value="1" selected>Quarto 01</option>
-                <option value="2" selected>Quarto 02</option>
-                <option value="3" selected>Quarto 03</option>
-                <option value="4" selected>Cozinha</option>
-                <option value="5" selected>Varanda</option>
-                <option value="6" selected>Área Externa</option>
-                <option value="7" selected>---------</option>
+            <select name="r_type_circuit" class="select form-control" required id="id_r_type_circuit">
+                <option value="0" selected>---------</option>
+                <option value="1">Luminária</option>
+                <option value="2">TUG's1</option>
+                <option value="3">Chuveiro</option>
+                <option value="4">Ar Condicionado</option>
             </select>
         </div>
     </div>
@@ -117,9 +123,10 @@
         <label for="id_r_tension" class=" requiredField">
             Tensão (VA)<span class="asteriskField">*</span> </label> <div class="">
                 <select name="r_tension" class="select form-control" required id="id_r_tension">
-                    <option value="0" selected>127</option>
-                    <option value="1" selected>220</option>
-                    <option value="2" selected>---------</option>
+                    <option value="0" selected>---------</option>
+                    <option value="1">127</option>
+                    <option value="2">220</option>
+                    
                 </select>
             </div>
         </div>
