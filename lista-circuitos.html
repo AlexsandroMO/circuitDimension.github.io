@@ -1,18 +1,85 @@
 
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-Compatible" content="ie-edge">
 
-{% block title %}Adicionar Contas{% endblock %}
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-{% block content %}
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <a class="navbar-brand" href="/">Meus Projetos</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+         
+            <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/accounts/login/">Usuários</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/accounts/register/">Cadastro</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Calculadora</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown01">
+                  <a class="dropdown-item" href="/newCalc/">Dimensionamento de Cabos</a>
+              </div>
+ 
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Circuitos</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    
+                    <a class="dropdown-item" href="/tasklist/1">Projeto Test</a>
+                    
+                </div>
+                
+            <li class="nav-item">
+            <a class="nav-link" href="/admin">Admin</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="accounts/logout">Sair</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">&nbsp;</a>
+            </li>
+
+                <form method="GET" id="search-form">
+                    <span><input class="form-control" type="search" id="search" name="search" placeholder="Localizar Circuito" value="">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search-btn" onclick="funcao_alerta()" value="Exibir Alert">Pesquisar</button></span>
+                </form>
+  
+          
+        </ul>
+        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      </div>
+    </nav>
 
 <div class="row">
 
-    <h3>Tabela de Circuitos - {{read_project}}</h3>
+    <h3>Tabela de Circuitos - (XXX)</h3>
+
+    <a id="add-link" href="#">
+        <button type="button" class="btn btn-success" onclick="readDB()">Criar Projetos</button>
+    </a>
 
     <div id="bt">
-        <a id="add-link" href="{% url 'new-task' %}">
-            <!-- <button type="button" class="btn btn-primary" id="alinha-bt"><i class="fas fa-plus">&nbsp <h5>Adicionar Circuito</h5></i></button> -->
+        <a id="add-link" href="#">
+
         <div id="div-bt">
             <button type="button" class="btn btn-outline-secondary"><h5>Adicionar Circuito</h5></button>
         </div>
@@ -20,19 +87,15 @@
 
     </div>
 
-    {% if messages %}
     <ul class="messages">
-       {% for message in messages %}
-            <li {% if message.tags %}class="alert alert-{{message.tags}}"{% endif %}>{{ message }}</li>
-       {% endfor %}
+            <li class="#"></li>
     </ul>
-    {% endif %}
-    
+
     <div id="ajusta-tabela">
         <br>
         <table class="table-round-corner" cellspacing="0">
             <tr>
-                <th id="th-color">&nbsp &nbsp<a id="add-link" href="{% url 'new-task' %}"><i class="fas fa-plus"></i></a></th>
+                <th id="th-color">&nbsp &nbsp<a id="add-link" href="#"><i class="fas fa-plus"></i></a></th>
                 <th>LOCAL</th>
                 <th>TIPO</th>
                 <th>TENSÃO (VA)</th>
@@ -47,11 +110,9 @@
                 <th>CORRENTE NOMINAL</th>
                 <th>DJ Usual</th>
                 <th></th>
-                
             </tr>
-            {% for item in task %}
                 <tr>
-                    <td><a href="{% url 'edit-task' item.id %}"><span><i class="fas fa-edit"></i></span></a></td>
+                    <td><a href="#"><span><i class="fas fa-edit"></i></span></a></td>
                     <td>{{item.r_local}}</td>
                     <td>{{item.r_type_circuit}}</td>
                     <td>{{item.r_tension}}</td>
@@ -65,11 +126,9 @@
                     <td>{{item.r_numero_polos}}</td>
                     <td>{{item.r_nominal_chain}}</td>
                     <td>{{item.r_appl_circ_break}}</td>
-                    <td><a href="{% url 'delete-task' item.id  %}" class="delete-btn"><span><i class="fas fa-trash"></i></span></a></td>
+                    <td><a href="#" class="delete-btn"><span><i class="fas fa-trash"></i></span></a></td>
                     
                 </tr>
-            {% endfor %}
-            
         </table>
         <br>
     </div>
@@ -79,4 +138,24 @@
 <br>
 
 
-{% endblock %}
+
+<footer>
+    <p>Projeto Dimensionameto de Circuitos</p>  
+</footer>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="scripts.js"></script>
+<script src="db.js"></script>
+<script src="calculos.js"></script>
+<script src="table36_cable.js"></script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

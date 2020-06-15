@@ -68,7 +68,6 @@
       </div>
     </nav>
 
-
 <!-- Create Circtuit-->
 <div class="offset-1 col-10 list-div">
     <h3>Adicione um Novo Circuito</h3>
@@ -82,8 +81,8 @@
         <div class="">
             <select name="r_project" class="select form-control" required id="id_r_project">
                 <option value="0" selected>---------</option>
-                <option value="1">Projeto Casa 01</option>
-                
+                <option value="Projeto Casa 01">Projeto Casa 01</option>
+                <option value="Projeto Casa 02">Projeto Casa 02</option>
             </select>
         </div>
     </div>
@@ -95,13 +94,13 @@
         <div class="">
             <select name="r_local" class="select form-control" required id="id_r_local">
                 <option value="0" selected>---------</option>
-                <option value="1">Sala</option>
-                <option value="2">Quarto 01</option>
-                <option value="3">Quarto 02</option>
-                <option value="4">Quarto 03</option>
-                <option value="5">Cozinha</option>
-                <option value="6">Varanda</option>
-                <option value="7">Área Externa</option>
+                <option value="Sala">Sala</option>
+                <option value="Quarto 01">Quarto 01</option>
+                <option value="Quarto 02">Quarto 02</option>
+                <option value="Quarto 03">Quarto 03</option>
+                <option value="Cozinha">Cozinha</option>
+                <option value="Varanda">Varanda</option>
+                <option value="Área Externa">Área Externa</option>
             </select>
         </div>
     </div>
@@ -112,10 +111,10 @@
         <div class="">
             <select name="r_type_circuit" class="select form-control" required id="id_r_type_circuit">
                 <option value="0" selected>---------</option>
-                <option value="1">Luminária</option>
-                <option value="2">TUG's1</option>
-                <option value="3">Chuveiro</option>
-                <option value="4">Ar Condicionado</option>
+                <option value="Luminária">Luminária</option>
+                <option value="TUG's">TUG's</option>
+                <option value="Chuveiro">Chuveiro</option>
+                <option value="Ar Condicionado">Ar Condicionado</option>
             </select>
         </div>
     </div>
@@ -124,9 +123,8 @@
             Tensão (VA)<span class="asteriskField">*</span> </label> <div class="">
                 <select name="r_tension" class="select form-control" required id="id_r_tension">
                     <option value="0" selected>---------</option>
-                    <option value="1">127</option>
-                    <option value="2">220</option>
-                    
+                    <option value="127">127</option>
+                    <option value="220">220</option>
                 </select>
             </div>
         </div>
@@ -163,20 +161,28 @@
         </div>
         <div id="div_id_r_numero_polos" class="form-group">
             <label for="id_r_numero_polos" class=" requiredField">
-                Número de Polos<span class="asteriskField">*</span>
+                Número de Condutores Carregados<span class="asteriskField">*</span>
             </label>
-            <div class="">
-                <input type="number" name="r_numero_polos" class="numberinput form-control" required id="id_r_numero_polos">
-            </div>
+            <select name="r_numero_polos" class="select form-control" required id="id_r_numero_polos">
+                <option value="0" selected>---------</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
         </div>
-        <input type="submit" class="btn btn-success" value="Criar Circuito" id="adicionar">
+        <div id="div_id_r_arrang_cable" class="form-group">
+            <label for="id_r_arrang_cable" class=" requiredField">
+                Arranjo de Cabos (Conforme tabela 33 - NBR-5410)<span class="asteriskField">*</span>
+            </label>
+            <select name="r_arrang_cable" class="select form-control" required id="id_r_arrang_cable">
+                <option value="0" selected>---------</option>
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+            </select>
+        </div>
+        <input type="submit" class="btn btn-success" value="Criar Circuito" id="adicionar" onclick="addCircuit()">
     </form>
 </div>
 <br>
-
-
-
-
 
     <footer>
         <p>Projeto Dimensionameto de Circuitos</p>  
@@ -187,7 +193,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="scripts.js"></script>
     <script src="db.js"></script>
-    <script src="sub_tables.js"></script>
+    <script src="calculos.js"></script>
+    <script src="table36_cable.js"></script>
+
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
