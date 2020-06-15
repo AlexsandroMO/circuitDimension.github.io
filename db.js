@@ -30,6 +30,10 @@ function addCircuit(){
 
     form.reset();
 
+    // Redireciona o usuário para a página da DevMedia após cinco segundos
+   /*  setTimeout(function() {
+        window.location.href = "http://www.devmedia.com.br";
+    }, 5000); */
     //window.location.href = "home.html";
 
 //});
