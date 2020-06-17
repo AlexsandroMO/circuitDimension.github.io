@@ -32,64 +32,28 @@ $(document).ready(function(){
         console.log(filtery);
 
     });
- 
 });
 
 
+function lerNomeProj(){
+    let url = window.location.href
+    let _id = url.split("?")[1]; // id=10&name=gustavo
 
+    for(i=0;i<_id.length;i++){
+        console.log('dentro da function',_id[0])
+    }
+    
+    return _id
 
-/* 
-function funcao_alerta(){
-    alert("Sorry, Research in Construction !!!");
 }
 
+var nome_proj = lerNomeProj()
+console.log('nome: ', nome_proj)
 
-    var sel = document.createElement("select");
-    var opt1 = document.createElement("option");
-    var opt2 = document.createElement("option");
-
-   
-
-    opt1.value = "1";
-    opt1.text = "Option: Value 1";
-
-    opt2.value = "2";
-    opt2.text = "Option: Value 2";
-
-    sel.add(opt1, null);
-    sel.add(opt2, null);
-
-    
-
-    document.getElementById('select3').appendChild(sel) */
+var cidades = [nome_proj];
 
 
-/* 
-function optionCKT(){
- 
-    let projetos = document.createElement('SELECT')
 
-    let nomes = [
-        'Projeto Casa 01',
-        'Projeto Casa 02'
-        ];
-        for (i=0;i<nomes.length;i++){
-            projetos.appendChild('<option>' + nomes[i] + '</option>')
-        }
-    
-    projetos.classList.add('select form-control')
- 
-    document.getElementById('select3').appendChild(projetos)
-}
- */
-
-/* 
-var projetos = [
-    'Projeto Casa 01',
-    'Projeto Casa 02'
-    ];
-    
-    projetos.map(item => {
-    $('#select1').append('<option>' + item + '</option>')
-    });  
-  */
+cidades.forEach(function(item){
+    $('select').append('<option>' + item + '</option>');
+});

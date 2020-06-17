@@ -66,6 +66,31 @@ function addData(ckt, calc){
 }
 
 //==================================
+function chamaThead(){
+
+    var cabecalho = document.createElement('thead');
+    
+    var dados = '<th scope="col"><a href="create-ckt.html"><i class="fas fa-plus"></i></a></th>\
+                <th scope="col">LOCAL</th>\
+                <th scope="col">TIPO</th>\
+                <th scope="col">TENSÃO (VA)</th>\
+                <th scope="col">QUANT.</th>\
+                <th scope="col">POTÊNCIA (VA)</th>\
+                <th scope="col">TOTAL (VA)</th>\
+                <th scope="col">CORRENTE (VA)</th>\
+                <th scope="col">COMP. CKT</th>\
+                <th scope="col">SEÇÃO CONDUTOR</th>\
+                <th scope="col">QUEDA TENSÃO PERMITIDA(%)</th>\
+                <th scope="col">Nº DE POLOS</th>\
+                <th scope="col">ORGANIZAÇÃO DE CABOS</th>\
+                <th scope="col">CORRENTE NOMINAL</th>\
+                <th scope="col">DJ USUAL</th>\
+                <th scope="col"></th>'
+  
+    cabecalho.innerHTML = dados;
+    cabecalho.classList.add('thead-dark');
+    return cabecalho
+}
 
 function readDB(){
 
@@ -74,20 +99,47 @@ function readDB(){
 
     let id_proj;
 
+
     db.transaction(function (tx){
         tx.executeSql('SELECT name_proj FROM cria_proj where id=?', [_id], function (tx, resultado){
         let rows = resultado.rows
 
         for (i=0;i<rows.length;i++){
             id_proj = rows[i].name_proj
-            //console.log('<<id_proj: ', id_proj)
+            console.log('<<id_proj: ', id_proj)
         }
 
         //----------------------------------
         
+        let table_circuit = document.querySelector('h3')
         let tabela = document.createElement('table')
  
         cabecalho = chamaThead();
+
+        //-----------------
+        var cabecalho = document.createElement('thead');
+            
+            var dados = `<th scope="col"><a href="create-ckt.html?${id_proj}"><i class="fas fa-plus"></i></a></th>\
+                        <th scope="col">LOCAL</th>\
+                        <th scope="col">TIPO</th>\
+                        <th scope="col">TENSÃO (VA)</th>\
+                        <th scope="col">QUANT.</th>\
+                        <th scope="col">POTÊNCIA (VA)</th>\
+                        <th scope="col">TOTAL (VA)</th>\
+                        <th scope="col">CORRENTE (VA)</th>\
+                        <th scope="col">COMP. CKT</th>\
+                        <th scope="col">SEÇÃO CONDUTOR</th>\
+                        <th scope="col">QUEDA TENSÃO PERMITIDA(%)</th>\
+                        <th scope="col">Nº DE POLOS</th>\
+                        <th scope="col">ORGANIZAÇÃO DE CABOS</th>\
+                        <th scope="col">CORRENTE NOMINAL</th>\
+                        <th scope="col">DJ USUAL</th>\
+                        <th scope="col"></th>`
+        
+        cabecalho.innerHTML = dados;
+        cabecalho.classList.add('thead-dark');
+        //----------------
+
         tabela.classList.add('table')
 
         //--------
@@ -119,6 +171,7 @@ function readDB(){
                 tr += '</tr>'; 
                 }
                 corpo.innerHTML = tr
+                table_circuit.innerHTML = `Tabela de Circuitos - ${id_proj}`
     
             }, null);
     
@@ -128,6 +181,7 @@ function readDB(){
         tabela.appendChild(cabecalho);
         tabela.appendChild(corpo);
         document.getElementById('ajusta-tabela').appendChild(tabela);
+        
         //----------------------------------
         
     }, null);
