@@ -14,9 +14,6 @@ function createDbProj(){
 } 
 
 
-function createproject()(){
-
-}
 
 function addProj(){
 
