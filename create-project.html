@@ -12,34 +12,45 @@
     <link rel="stylesheet" href="styles.css">
 
 </head>
+<body>
 
-<body onload="readProjDB()">
- 
     <div class="container-fluid">
-        <iframe src="pages/header.html"></iframe>
+        <iframe src="header.html"></iframe>
     </div>
 
-    <div id="alinha-bt-create">
-        <a href="create-project.html"><button type="button" class="btn btn-secondary">Criar Projeto</button></a>
-    </div>
-    
-<div class="row">
-    <h3>Lista de Projetos</h3>
+<!-- Create Circtuit-->
+<div class="offset-1 col-10 list-div">
+    <h3>Adicione um Novo Circuito</h3>
+    <form id="form-adiciona-proj">
+        <div id="div_id_r_create-project" class="form-group">
+            <label for="id_r_create_project" class=" requiredField">
+                Nome do Projeto<span class="asteriskField">*</span>
+            </label>
+            <div class="">
+                <input type="text" name="r_create_project" class="numberinput form-control" required id="id_r_create_project">
+            </div>
+        </div>
+
+        <div id="div_id_r_coment" class="form-group">
+            <label for="id_r_coment" class=" requiredField">
+                Comentários<span class="asteriskField">*</span>
+            </label>
+            <div class="">
+                <input type="text" name="r_coment" class="numberinput form-control" required id="id_r_coment">
+            </div>
+        </div>
+            <input type="submit" class="btn btn-success" value="Criar Projeto" id="adicionar" onclick="addProj()">
+    </form>
 </div>
+<br>
 
-
-<div class="col-sm-5">
-    <div id="ajusta-tabela-proj"></div>
+<div class="container-fluid">
+    <iframe src="footer.html"></iframe>
 </div>
-
-<footer>
-    <p>Projeto Dimensionameto de Circuitos</p>  
-</footer>
 
 </body>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="bootstrap.min.css"></script>
     <script src="scripts.js"></script>
     <script src="db_proj.js"></script>
     <script src="db_circuit.js"></script>
