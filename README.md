@@ -1,2 +1,2 @@
-# circuitDimension.github.io
+# http://circuitDimension.github.io
 Dimensionamento de Circuitos
